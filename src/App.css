@@ -1,0 +1,42 @@
+.site-inner-wrapper {
+  overflow: hidden;
+}
+
+.header-region {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  background-color: #1c262f;
+  color: #fff;
+  padding: 0 15px;
+}
+
+.main-region {
+  height: calc(100vh - 80px);
+}
+
+.main-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateX(-100%);
+  z-index: 2;
+  width: 300px;
+  background-color: #5e7890;
+  padding: 15px;
+  color: #fff;
+  transition: .4s transform ease-in-out .4s;
+}
+
+.main-menu.menu-opened {
+  transform: translateX(0%)
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+/**/
+
