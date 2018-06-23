@@ -20,16 +20,19 @@
   top: 0;
   left: 0;
   bottom: 0;
+  transform: translateX(-100%);
+  visibility: hidden;
   z-index: 2;
   width: 300px;
   background-color: #5e7890;
   padding: 15px;
   color: #fff;
-  display: none;
+  transition: .4s transform ease-in-out;
 }
 
 .main-menu.menu-opened {
-  display: block;
+  transform: translateX(0%);
+  visibility: visible;
 }
 
 #map {
