@@ -25,11 +25,10 @@ export default class SideMenu extends React.Component {
 
           <input type='text'/>
 
-          <ul aria-label="places">
-            <li>This is the first option</li>
-            <li>This is the first option</li>
-            <li>This is the first option</li>
-            <li>This is the first option</li>
+          <ul 
+            aria-label="places"
+            className='results-list'>
+            {/* waiting for the feed */}
           </ul>  
 
         </div>  

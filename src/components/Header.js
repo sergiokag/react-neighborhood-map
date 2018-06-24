@@ -17,21 +17,25 @@ export default class Header extends React.Component {
     const _firstTabStop = elems[0];
     const _lastTabStop = elems[elems.length - 1];
 
-    if(e.keyCode === 9) {
+    if ( 
+          e.shiftKey &&
+          e.keyCode === 9 &&
+          document.activeElement === _firstTabStop
+      ) {
 
-      if(e.shiftKey && document.activeElement === _firstTabStop) {
-        e.preventDefault();
-        _lastTabStop.focus();
-      }
+          e.preventDefault();
+          _lastTabStop.focus();
 
     }
     else {
 
-      if ( document.activeElement === _lastTabStop ) {
-        e.preventDefault();
-        _firstTabStop.focus();
-      }
-
+        if (
+          e.keyCode === 9 &&
+          document.activeElement === _lastTabStop
+        ) { 
+            e.preventDefault();
+            _firstTabStop.focus();
+         }
     } 
 
     

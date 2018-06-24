@@ -25,7 +25,7 @@
   z-index: 2;
   width: 300px;
   background-color: #5e7890;
-  padding: 15px;
+  padding: 18px 15px;
   color: #fff;
   transition: .4s transform ease-in-out;
 }
@@ -35,9 +35,26 @@
   visibility: visible;
 }
 
+.main-menu input {
+  width: 100%;
+  height: 34px;
+}
+
+.btn-container {
+  margin-bottom: 15px;
+}
+
 #map {
   height: 100%;
   width: 100%;
+}
+
+
+.results-list > li {
+  padding: 15px;
+}
+.results-list > li:hover {
+  background-color: #455f77;
 }
 
 /**/
