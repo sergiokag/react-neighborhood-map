@@ -9,7 +9,6 @@ export default class SideMenu extends React.Component {
   render() {
     return (
       <nav
-        role="navigation"
         tabIndex="-1"
         id="main-menu"
         className={`main-menu ${this.props.menuStatus ? 'menu-opened' : '' }`}>
