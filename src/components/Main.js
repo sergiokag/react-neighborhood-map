@@ -1,4 +1,8 @@
+// core
 import React from 'react'
+
+// component
+import Map from './Map'
 
 export default class Main extends React.Component {
   
@@ -12,10 +16,11 @@ export default class Main extends React.Component {
       <main 
         className="main-region"
         role='main'>
-  
-        <div className="map-container">
-          <div id="map"></div>       
-        </div>
+
+        <Map
+          containerElement={<div role='application' style={{ height: `100%` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          />
 
       </main>
     )

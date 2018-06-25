@@ -1,9 +1,11 @@
+// core
 import React from 'react'
 
 export default class SideMenu extends React.Component {
 
   changeMenuStatus () {
-    this.props.parentHandleMenuFn(!this.props.menuStatus)
+    this.props.parentHandleMenuFn(!this.props.menuStatus);
+    document.querySelector('#open-menu-btn').focus();
   }
 
   render() {
