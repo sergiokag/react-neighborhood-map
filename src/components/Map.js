@@ -44,11 +44,25 @@ class Map  extends React.Component {
 
     };
   }
+
+  componentDidUpdate() {
+    this._map.fitBounds(this._map, [this._bounds]);
+  }
+
+  // getCenter functionality
+  // from : https://stackoverflow.com/questions/44487215/react-google-maps-how-to-use-fitbounds-panby-panto-pantobounds-public-apis?rq=1
+  getCenter = () => {
+    this._bounds = new window.google.maps.LatLngBounds();
+
+    this.state._defaultLocations.forEach((marker, index) => {
+      const position = new window.google.maps.LatLng(marker.lat, marker.lng);
+      this._bounds.extend(position);
+    });
+
+    return this._bounds.getCenter();
+  }
   
   render() {
-
-    const _lat = 37.983810;
-    const _lng = 23.727539;
 
     const _defaultLocations = this.state._defaultLocations;
 
@@ -56,8 +70,8 @@ class Map  extends React.Component {
     return (
       <div className="map-container">
         <GoogleMap
-          defaultZoom={15}
-          defaultCenter={{ lat: _lat, lng: _lng }}>
+          defaultZoom={13}
+          center={this.getCenter()}>
           
           {
             _defaultLocations.map( (p,i) => <Marker
@@ -75,4 +89,4 @@ class Map  extends React.Component {
 
 }
 
-export default withGoogleMap(Map)
+export default withGoogleMap(Map);
