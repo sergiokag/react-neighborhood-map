@@ -45,10 +45,6 @@ class Map  extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    this._map.fitBounds(this._map, [this._bounds]);
-  }
-
   // getCenter functionality
   // from : https://stackoverflow.com/questions/44487215/react-google-maps-how-to-use-fitbounds-panby-panto-pantobounds-public-apis?rq=1
   getCenter = () => {
