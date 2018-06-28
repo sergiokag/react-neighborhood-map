@@ -6,13 +6,14 @@ import {
   withGoogleMap,
   GoogleMap,
   Marker,
-} from "react-google-maps";
-
+} from "react-google-maps"
+import { InfoBox } from "react-google-maps/lib/components/addons/InfoBox"
 
 class Map  extends React.Component {
 
   constructor(props) {
     super(props);
+    console.dir(props)
     this.state = {
       _defaultLocations: [
         { 
@@ -72,8 +73,23 @@ class Map  extends React.Component {
           {
             _defaultLocations.map( (p,i) => <Marker
                                               key={i}
-                                              position={{ lat: p.lat, lng: p.lng }}
-                                            />)
+                                              position={{ lat: p.lat, lng: p.lng }}>
+
+                                                {<InfoBox
+                                                  // check https://github.com/tomchentw/react-google-maps/issues/753
+                                                  // onCloseClick={}
+                                                  options={{ closeBoxURL: ``, enableEventPropagation: true }}>
+
+                                                  <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
+                                                    <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
+                                                      Hello, Kaohsiung!
+                                                    </div>
+                                                  </div>
+                                                  
+                                                </InfoBox>}
+                                                
+                                            </Marker>
+                                            )
           }
 
           
