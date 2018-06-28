@@ -6,8 +6,8 @@ import {
   withGoogleMap,
   GoogleMap,
   Marker,
+  InfoWindow 
 } from "react-google-maps"
-import { InfoBox } from "react-google-maps/lib/components/addons/InfoBox"
 
 class Map  extends React.Component {
 
@@ -15,6 +15,7 @@ class Map  extends React.Component {
     super(props);
     console.dir(props)
     this.state = {
+      indexItem: null,
       _defaultLocations: [
         { 
           // red elephant
@@ -41,8 +42,6 @@ class Map  extends React.Component {
           lng: 23.7955143
         }
     ],
-
-
     };
   }
 
@@ -58,11 +57,22 @@ class Map  extends React.Component {
 
     return this._bounds.getCenter();
   }
+
+  handleToggleOpen = (index) => {
+    this.setState({
+      indexItem: index
+    });
+  }
+  
+  handleToggleClose = () => {
+    this.setState({
+      indexItem: null
+    });
+  }
   
   render() {
 
     const _defaultLocations = this.state._defaultLocations;
-
 
     return (
       <div className="map-container">
@@ -73,20 +83,25 @@ class Map  extends React.Component {
           {
             _defaultLocations.map( (p,i) => <Marker
                                               key={i}
-                                              position={{ lat: p.lat, lng: p.lng }}>
+                                              position={{ lat: p.lat, lng: p.lng }}
+                                              onClick={() => this.handleToggleOpen(i)}>
 
-                                                {<InfoBox
-                                                  // check https://github.com/tomchentw/react-google-maps/issues/753
-                                                  // onCloseClick={}
-                                                  options={{ closeBoxURL: ``, enableEventPropagation: true }}>
+                                              {
+                                                  ( this.state.indexItem === i )
 
-                                                  <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
+                                                    && 
+
+                                                  <InfoWindow 
+                                                    onCloseClick={ () => this.handleToggleClose() }>
+
+                                                  <div style={{ backgroundColor: `#ffffff`, padding: `12px` }}>
                                                     <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
-                                                      Hello, Kaohsiung!
+                                                      Hello, InfoBox!
                                                     </div>
                                                   </div>
                                                   
-                                                </InfoBox>}
+                                                </InfoWindow>
+                                              }
                                                 
                                             </Marker>
                                             )
