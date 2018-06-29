@@ -8,6 +8,7 @@ import {
   Marker,
   InfoWindow 
 } from "react-google-maps"
+import axios from 'axios'
 
 class Map  extends React.Component {
 
@@ -43,6 +44,10 @@ class Map  extends React.Component {
         }
     ],
     };
+  }
+
+  componentDidMount() {
+    // axios.get(`https://api.foursquare.com/v2/venues/explore`)
   }
 
   // getCenter functionality
