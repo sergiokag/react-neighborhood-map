@@ -8,7 +8,7 @@ import {
   Marker,
   InfoWindow 
 } from "react-google-maps"
-import axios from 'axios'
+//import axios from 'axios'
 
 class Map  extends React.Component {
 
@@ -47,7 +47,23 @@ class Map  extends React.Component {
   }
 
   componentDidMount() {
-    // axios.get(`https://api.foursquare.com/v2/venues/explore`)
+    // const params = {
+    //   client_id: '1V340QFFYS0YJDOF01YIVZUYB5B1PB0RRL2G4FMS2ZMBNQFD',
+    //   client_secret: 'JVUFVZJ35JTNRIGL303QL4G0JSNXA00PWWRR4F5ZSPE2R4PO',
+    //   ll: '40.7243,-74.0018',
+    //   query: 'coffee',
+    //   v: '20180323',
+    //   limit: 1
+    // };
+
+    // axios.get(`https://api.foursquare.com/v2/venues/explore`, {
+    //   params
+    // }).then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
   }
 
   // getCenter functionality
