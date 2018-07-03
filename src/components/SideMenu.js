@@ -23,7 +23,6 @@ export default class SideMenu extends React.Component {
 
   searchLocation (e) {
     e.persist();
-    const _obj = {};
     let _value = this.textVal.value;
 
     if(!_value) {
@@ -31,20 +30,9 @@ export default class SideMenu extends React.Component {
       return;
     }
 
-    getLocation(_value)
-      .then( v => {
-        
-        _obj.formatted_address = v.formatted_address;
-        _obj.location = v.geometry.location;
-
-        return this.setState({
-          locationList:[_obj]
-        },
-        () => console.log(this.state)
-      )
-
-      })
-      .catch( err => console.error(err) );
+    console.log(getLocation(_value))
+     
+    const results = getLocation(_value);
 
   }
 

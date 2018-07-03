@@ -8,13 +8,12 @@ import {
   Marker,
   InfoWindow 
 } from "react-google-maps"
-//import axios from 'axios'
 
 class Map  extends React.Component {
 
   constructor(props) {
     super(props);
-    console.dir(props)
+
     this.state = {
       indexItem: null,
       _defaultLocations: [
