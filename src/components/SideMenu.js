@@ -23,6 +23,7 @@ export default class SideMenu extends React.Component {
 
   searchLocation (e) {
     e.persist();
+    const _obj = {};
     let _value = this.textVal.value;
 
     if(!_value) {
@@ -30,21 +31,26 @@ export default class SideMenu extends React.Component {
       return;
     }
 
-    const willGetReLocation = getLocation(_value)
+    getLocation(_value)
+      .then( v => {
+        
+        _obj.formatted_address = v.formatted_address;
+        _obj.location = v.geometry.location;
 
-    console.log(willGetReLocation)
+        return this.setState({
+          locationList:[_obj]
+        },
+        () => console.log(this.state)
+      )
 
-
-
-    // this.setState({
-    //   locationList: getLocation('Athens, Greece')
-    // }, () => console.log(this.state))
+      })
+      .catch( err => console.error(err) );
 
   }
 
   render() {
 
-    const List = this.state.locationList;
+    const locationList = this.state.locationList;
 
     return (
       <nav
@@ -63,21 +69,21 @@ export default class SideMenu extends React.Component {
         <div className='search-container'>
 
           <input type='text'
-            onChange={  _.debounce( this.searchLocation.bind(this) ,500)  }
+            onChange={  _.debounce( this.searchLocation.bind(this) , 1000)  }
             ref={(input) => { this.textVal = input }} />
 
             
-                { List.length 
+                { locationList.length 
                     ? 
                   (
                     <ul 
                       aria-label="places"
                       className='results-list'>
-                      { List.length.map((l, i) => {
+                      { locationList.map((l, i) => {
 
                         return <li key={i}>
                           <p>
-                            { l.formated_address }
+                            { l.formatted_address }
                           </p>
                         </li>
 
