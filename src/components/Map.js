@@ -103,6 +103,7 @@ class Map  extends React.Component {
           
           {
             _defaultLocations.map( (p,i) => <Marker
+                                              animation = { window.google.maps.Animation.DROP }
                                               key={i}
                                               position={{ lat: p.lat, lng: p.lng }}
                                               onClick={() => this.handleToggleOpen(i)}>
