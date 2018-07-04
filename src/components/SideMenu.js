@@ -26,7 +26,6 @@ export default class SideMenu extends React.Component {
     let _value = this.textVal.value;
 
     if(!_value) {
-      console.log('no results');
 
       this.setState({
         locationList: []
@@ -36,8 +35,6 @@ export default class SideMenu extends React.Component {
       return;
     }
 
-    console.log(getLocation(_value))
-     
     const results = getLocation(_value);
 
     this.setState({
@@ -81,11 +78,16 @@ export default class SideMenu extends React.Component {
                       className='results-list'>
                       { locationList.map((l, i) => {
 
-                        return <li key={i}>
-                          <p>
-                            { l.title }
-                          </p>
-                        </li>
+                        return  <li 
+                                  tabIndex='0'
+                                  onClick={ () => { this.props.parentHandleInfoFn(i) } }
+                                  key={i}>
+
+                                  <p>
+                                    { l.title }
+                                  </p>
+
+                                </li>
 
                       })}
                     </ul>

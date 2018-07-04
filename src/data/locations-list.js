@@ -2,7 +2,7 @@ export const locations = [
                           { 
                             "id" : 1,
                             "title" : "Test",
-                            "lat": 40.713829,
-                            "lng": -73.989667
+                            "lat": 37.988742,
+                            "lng": 23.754091
                           }
                         ]

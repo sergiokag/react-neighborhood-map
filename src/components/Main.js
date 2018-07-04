@@ -9,10 +9,6 @@ export default class Main extends React.Component {
   constructor(props) {
     super(props)
   }
-
-  componentDidMount() {
-
-  }
   
   render() {
     return (
@@ -21,6 +17,7 @@ export default class Main extends React.Component {
         role='main'>
 
         <Map
+          selectedIndex={this.props.parentSelected}
           newMarkers={this.props.parentResults}
           containerElement={<div role='application' style={{ height: `100%` }} />}
           mapElement={<div style={{ height: `100%` }} />}

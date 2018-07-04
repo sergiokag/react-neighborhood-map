@@ -65,6 +65,7 @@ class Map  extends React.Component {
     // });
   }
 
+
   // getCenter functionality
   // from : https://stackoverflow.com/questions/44487215/react-google-maps-how-to-use-fitbounds-panby-panto-pantobounds-public-apis?rq=1
   getCenter = () => {
@@ -79,8 +80,16 @@ class Map  extends React.Component {
   }
 
   handleToggleOpen = (index) => {
+    console.log(this.props)
+    const _index =  ( this.props.selectedIndex === 0 || this.props.selectedIndex )
+                      ?
+                    this.props.selectedIndex
+                      :
+                    index;
+
+    
     this.setState({
-      indexItem: index
+      indexItem: _index
     });
   }
   
@@ -91,7 +100,6 @@ class Map  extends React.Component {
   }
   
   render() {
-
     let _defaultLocations;
     
     ( this.props.newMarkers  && this.props.newMarkers.length )
@@ -99,8 +107,6 @@ class Map  extends React.Component {
     _defaultLocations = this.props.newMarkers
       :
     _defaultLocations = this.state._defaultLocations;
-
-    console.log('>>>>>>>>>>>', _defaultLocations)
 
     return (
       <div className="map-container">
@@ -115,7 +121,8 @@ class Map  extends React.Component {
                                               position={{ lat: p.lat, lng: p.lng }}
                                               onClick={() => this.handleToggleOpen(i)}>
 
-                                              {
+                                              {   
+                                                  
                                                   ( this.state.indexItem === i )
 
                                                     && 

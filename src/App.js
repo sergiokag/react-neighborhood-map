@@ -30,6 +30,12 @@ export default class App extends React.Component {
     })
   }
 
+  handleInfo(id) {
+    this.setState({
+      selectedId: id
+    })
+  }
+
   render() {
     return( 
       <div className="site-wrapper">
@@ -41,11 +47,13 @@ export default class App extends React.Component {
             parentHandleMenuFn={this.handleMenuStatus.bind(this)}/>
 
           <Main 
+            parentSelected={this.state.selectedId}
             parentResults={this.state.results} />
 
         </div>
 
         <SideMenu 
+          parentHandleInfoFn={this.handleInfo.bind(this)}
           parentHandleResultsFn={this.handleResults.bind(this)}
           menuStatus={this.state.menuStatus}
           parentHandleMenuFn={this.handleMenuStatus.bind(this)}/>
