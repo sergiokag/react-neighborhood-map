@@ -92,7 +92,15 @@ class Map  extends React.Component {
   
   render() {
 
-    const _defaultLocations = this.state._defaultLocations;
+    let _defaultLocations;
+    
+    ( this.props.newMarkers  && this.props.newMarkers.length )
+      ?
+    _defaultLocations = this.props.newMarkers
+      :
+    _defaultLocations = this.state._defaultLocations;
+
+    console.log('>>>>>>>>>>>', _defaultLocations)
 
     return (
       <div className="map-container">

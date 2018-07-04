@@ -24,18 +24,29 @@ export default class App extends React.Component {
     })
   }
 
+  handleResults(arr) {
+    this.setState({
+      results: arr
+    })
+  }
+
   render() {
     return( 
       <div className="site-wrapper">
 
         <div className="site-inner-wrapper">
+          
           <Header 
             parentMenuStatus={this.state.menuStatus}
             parentHandleMenuFn={this.handleMenuStatus.bind(this)}/>
-          <Main />
+
+          <Main 
+            parentResults={this.state.results} />
+
         </div>
 
         <SideMenu 
+          parentHandleResultsFn={this.handleResults.bind(this)}
           menuStatus={this.state.menuStatus}
           parentHandleMenuFn={this.handleMenuStatus.bind(this)}/>
       </div>

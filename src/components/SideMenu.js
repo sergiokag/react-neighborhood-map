@@ -27,6 +27,12 @@ export default class SideMenu extends React.Component {
 
     if(!_value) {
       console.log('no results');
+
+      this.setState({
+        locationList: []
+      });
+
+      this.props.parentHandleResultsFn([]);
       return;
     }
 
@@ -36,7 +42,9 @@ export default class SideMenu extends React.Component {
 
     this.setState({
       locationList: results
-    })
+    });
+
+    this.props.parentHandleResultsFn(results);
 
   }
 
