@@ -34,6 +34,10 @@ export default class SideMenu extends React.Component {
      
     const results = getLocation(_value);
 
+    this.setState({
+      locationList: results
+    })
+
   }
 
   render() {
@@ -71,7 +75,7 @@ export default class SideMenu extends React.Component {
 
                         return <li key={i}>
                           <p>
-                            { l.formatted_address }
+                            { l.title }
                           </p>
                         </li>
 
