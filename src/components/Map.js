@@ -121,8 +121,9 @@ class Map  extends React.Component {
                                               position={{ lat: p.lat, lng: p.lng }}
                                               onClick={() => this.handleToggleOpen(i)}>
 
-                                              {   
-                                                  
+                                              {      
+                                                    // needs refactoring
+                                                    // https://github.com/tomchentw/react-google-maps/issues/753
                                                   ( this.state.indexItem === i )
 
                                                     && 
