@@ -4,10 +4,13 @@ import React from 'react'
 // libs 
 import {
   withGoogleMap,
-  GoogleMap,
-  Marker,
-  InfoWindow 
+  GoogleMap
 } from "react-google-maps"
+
+// components
+import PinMarker from './PinMarker'
+
+import { defaultLocations } from '../data/locations-list'
 
 class Map  extends React.Component {
 
@@ -15,56 +18,9 @@ class Map  extends React.Component {
     super(props);
 
     this.state = {
-      indexItem: null,
-      _defaultLocations: [
-        { 
-          // red elephant
-          lat: 37.9941591,
-          lng: 23.7599304
-        },
-        {
-          // belpaese
-          lat: 37.9685022,
-          lng: 23.7280238
-        },
-        { 
-          // to karotsi tou giatrou
-          lat: 37.9772691,
-          lng: 23.7256247
-        },
-        {
-          // parlo
-          lat: 37.9991995,
-          lng: 23.7699747
-        },
-        {
-          lat: 38.0227292,
-          lng: 23.7955143
-        }
-    ],
+      _defaultLocations: defaultLocations ,
     };
   }
-
-  componentDidMount() {
-    // const params = {
-    //   client_id: '1V340QFFYS0YJDOF01YIVZUYB5B1PB0RRL2G4FMS2ZMBNQFD',
-    //   client_secret: 'JVUFVZJ35JTNRIGL303QL4G0JSNXA00PWWRR4F5ZSPE2R4PO',
-    //   ll: '40.7243,-74.0018',
-    //   query: 'coffee',
-    //   v: '20180323',
-    //   limit: 1
-    // };
-
-    // axios.get(`https://api.foursquare.com/v2/venues/explore`, {
-    //   params
-    // }).then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-  }
-
 
   // getCenter functionality
   // from : https://stackoverflow.com/questions/44487215/react-google-maps-how-to-use-fitbounds-panby-panto-pantobounds-public-apis?rq=1
@@ -77,26 +33,6 @@ class Map  extends React.Component {
     });
 
     return this._bounds.getCenter();
-  }
-
-  handleToggleOpen = (index) => {
-    console.log(this.props)
-    const _index =  ( this.props.selectedIndex === 0 || this.props.selectedIndex )
-                      ?
-                    this.props.selectedIndex
-                      :
-                    index;
-
-    
-    this.setState({
-      indexItem: _index
-    });
-  }
-  
-  handleToggleClose = () => {
-    this.setState({
-      indexItem: null
-    });
   }
   
   render() {
@@ -115,33 +51,11 @@ class Map  extends React.Component {
           center={this.getCenter()}>
           
           {
-            _defaultLocations.map( (p,i) => <Marker
-                                              animation = { window.google.maps.Animation.DROP }
+            _defaultLocations.map( (p,i) => <PinMarker
+                                              selectedMarker={this.props.selectedMarker}
                                               key={i}
-                                              position={{ lat: p.lat, lng: p.lng }}
-                                              onClick={() => this.handleToggleOpen(i)}>
-
-                                              {      
-                                                    // needs refactoring
-                                                    // https://github.com/tomchentw/react-google-maps/issues/753
-                                                  ( this.state.indexItem === i )
-
-                                                    && 
-
-                                                  <InfoWindow 
-                                                    onCloseClick={ () => this.handleToggleClose() }>
-
-                                                  <div style={{ backgroundColor: `#ffffff`, padding: `12px` }}>
-                                                    <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
-                                                      Hello, InfoBox!
-                                                    </div>
-                                                  </div>
-                                                  
-                                                </InfoWindow>
-                                              }
-                                                
-                                            </Marker>
-                                            )
+                                              position={p} /> 
+                                  )
           }
 
           

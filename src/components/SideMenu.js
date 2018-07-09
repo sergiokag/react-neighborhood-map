@@ -80,7 +80,7 @@ export default class SideMenu extends React.Component {
 
                         return  <li 
                                   tabIndex='0'
-                                  onClick={ () => { this.props.parentHandleInfoFn(i) } }
+                                  onClick={ () => { this.props.parentHandleInfoFn() } }
                                   key={i}>
 
                                   <p>
