@@ -9,7 +9,10 @@ export function getLocation(value) {
   return locations.filter( location => location.title.match(regex) )
 }
 
-export function getFourSquareInfo(lat, lng) {
+export function getFourSquareInfo(obj) {
+
+    const { v_id, lat, lng } = obj;
+
     const params = {
       client_id: '1V340QFFYS0YJDOF01YIVZUYB5B1PB0RRL2G4FMS2ZMBNQFD',
       client_secret: 'JVUFVZJ35JTNRIGL303QL4G0JSNXA00PWWRR4F5ZSPE2R4PO',
@@ -18,7 +21,7 @@ export function getFourSquareInfo(lat, lng) {
       limit: 1
     };
 
-    return axios.get(`https://api.foursquare.com/v2/venues/explore`, {
+    return axios.get(`https://api.foursquare.com/v2/venues/${v_id}`, {
       params
     }) 
 }

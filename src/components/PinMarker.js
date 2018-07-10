@@ -14,12 +14,21 @@ export default class PinMarker extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isOpen: false
+      isOpen: false,
+      tips: []
     }
   }
 
   componentDidMount(){
-    //getFourSquareInfo(37.9660359, 23.7256045).then( r => console.log(r))
+
+      getFourSquareInfo(this.props.position).then( r => {
+      
+        this.setState({
+          tips: r.data.response.venue.tips.groups[0].items
+        })
+
+      })
+
   }
 
   componentWillReceiveProps(props) {
@@ -59,14 +68,29 @@ export default class PinMarker extends React.Component {
                           <div style={{ backgroundColor: `#ffffff`, padding: `12px` }}>
                             <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
                               <h2>{ this.props.position.title }</h2>
-                              <p>
-                                { 
-                                  // getFourSquareInfo(
-                                  //   this.props.position.lat,
-                                  //   this.props.position.lng )
-                                  'testing'
-                                }
-                              </p>
+
+
+                              {
+                                ( this.state.tips.length ) 
+                                    ?
+                                  <div>
+                                    <h3>Comments:</h3>  
+                                    <ul>
+                                      { 
+                                          this.state.tips.map( (t, i) => <li key={i}>
+                                                                            { t.text ? t.text : 'No tips availiable' }
+                                                                        </li> 
+                                                          )
+                                      }
+                                    </ul>
+                                  </div>
+                                    : 
+                                  <p>
+                                    No data availiable!
+                                  </p>
+                              }     
+
+
 
                             </div>
                           </div>         

@@ -43,14 +43,8 @@ export default class Header extends React.Component {
   }
   
   trapKeyOnNav() {
-    
-    const focusableElementsString = `a[href], input:not([disabled]), button:not([disabled]), [tabindex='0']`;
     const _nav = document.querySelector('#main-menu');
-
-    const focusableEls = Array.from(_nav.querySelectorAll(focusableElementsString));
     _nav.focus();
-
-    _nav.addEventListener('keydown', (e) => { this.trapKeyFn(e, focusableEls) });
 
   }
 
