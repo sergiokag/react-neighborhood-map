@@ -32,6 +32,7 @@ export default class SideMenu extends React.Component {
       });
 
       this.props.parentHandleResultsFn([]);
+      this.props.parentClearInfo();
       return;
     }
 
