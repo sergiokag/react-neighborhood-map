@@ -52,6 +52,8 @@ class Map  extends React.Component {
           
           {
             _defaultLocations.map( (p,i) => <PinMarker
+                                              locationId={this.props.locationId}
+                                              id={p['v_id']}
                                               selectedMarker={this.props.selectedMarker}
                                               key={i}
                                               position={p} /> 

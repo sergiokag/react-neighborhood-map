@@ -15,7 +15,8 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       menuStatus: false,
-      openInfo: false
+      openInfo: false,
+      locationId: null
     }
   }
 
@@ -31,9 +32,10 @@ export default class App extends React.Component {
     })
   }
 
-  handleInfo() {
+  handleInfo(id) {
     this.setState({
-      openInfo: !this.state.openInfo
+      openInfo: !this.state.openInfo,
+      locationId: id
     })
   }
 
@@ -48,6 +50,7 @@ export default class App extends React.Component {
             parentHandleMenuFn={this.handleMenuStatus.bind(this)}/>
 
           <Main 
+            locationId={this.state.locationId}
             parentSelected={this.state.openInfo}
             parentResults={this.state.results} />
 

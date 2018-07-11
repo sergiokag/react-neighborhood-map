@@ -50,6 +50,11 @@
 }
 
 
+.results-list {
+  overflow: auto;
+  height: 80vh;
+}
+
 .results-list > li {
   padding: 15px;
 }

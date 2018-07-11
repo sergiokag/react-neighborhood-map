@@ -17,6 +17,7 @@ export default class Main extends React.Component {
         role='main'>
 
         <Map
+          locationId={this.props.locationId}
           selectedMarker={this.props.parentSelected}
           newMarkers={this.props.parentResults}
           containerElement={<div role='application' style={{ height: `100%` }} />}
