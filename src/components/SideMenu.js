@@ -16,6 +16,26 @@ export default class SideMenu extends React.Component {
 
   }
 
+  beautifyResponse (arr) {
+    const finalArr = [];
+    
+    arr.forEach( (el,i,arr) => {
+  
+      const obj = {};
+
+      obj['v_id'] = el.id;
+      obj.title = el.name;
+      obj.lat = el.location.lat;
+      obj.lng = el.location.lng;
+
+      finalArr.push(obj);
+
+    });
+
+    return finalArr;
+
+  }
+
   changeMenuStatus () {
     this.props.parentHandleMenuFn(!this.props.menuStatus);
     document.querySelector('#open-menu-btn').focus();
@@ -23,6 +43,7 @@ export default class SideMenu extends React.Component {
 
   searchLocation (e) {
     e.persist();
+    
     let _value = this.textVal.value;
 
     if(!_value) {
@@ -33,16 +54,27 @@ export default class SideMenu extends React.Component {
 
       this.props.parentHandleResultsFn([]);
       this.props.parentClearInfo();
+
       return;
     }
 
-    const results = getLocation(_value);
+    // get the locations
+    let results = [];
+    let resultsFromPromise = getLocation(_value)
+                              .then( res =>{ 
 
-    this.setState({
-      locationList: results
-    });
+                                results = res.data.response.venues;
 
-    this.props.parentHandleResultsFn(results);
+                                // need transform data
+                                results = this.beautifyResponse(results);
+
+                                this.setState({
+                                  locationList: results
+                                });
+                                this.props.parentHandleResultsFn(results);                                
+
+                              }).catch(err => console.error(err));
+
 
   }
 
@@ -67,7 +99,7 @@ export default class SideMenu extends React.Component {
         <div className='search-container'>
 
           <input type='text'
-            onChange={  _.debounce( this.searchLocation.bind(this) , 1000)  }
+            onChange={ _.debounce( this.searchLocation.bind(this) , 1000) }
             ref={(input) => { this.textVal = input }} />
 
             
