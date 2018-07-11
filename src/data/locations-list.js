@@ -7,7 +7,6 @@ export const locations = [
                           }
                         ];
 
-
 export const defaultLocations =   [
   { 
     v_id : "4fda2cade4b0c5e9ba04168f",

@@ -1,9 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="This an app about getting info for new places to visit!">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <!--
@@ -17,6 +23,11 @@
     <title>My Neighborhood Map</title>
   </head>
   <body>
+    
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -26,25 +37,7 @@
       To begin the development, run `npm start`.
       To create a production bundle, use `npm run build`.
     -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkV06KWTh709fFp4UpMCGPNNwYrrVbPNU"></script>
-  <script>
-    // Check for browser support of service worker
-    if ('serviceWorker' in navigator) {
-      
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkV06KWTh709fFp4UpMCGPNNwYrrVbPNU"></script>
 
-      navigator.serviceWorker.register('serviceWorker.js')
-
-      .then(function(registration) {
-        // Successful registration
-        console.log('Hooray. Registration successful, scope is:', registration.scope);
-
-      }).catch(function(err) {
-
-        // Failed registration, service worker won’t be installed
-        console.log('Whoops. Service worker registration failed, error:', error);
-      });
-
-    }  
-  </script>
   </body>
 </html>
