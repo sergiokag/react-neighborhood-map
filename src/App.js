@@ -59,7 +59,8 @@ export default class App extends React.Component {
         <SideMenu 
           parentClearInfo={()=> {
             this.setState({
-              openInfo: false
+              openInfo: false,
+              locationId: null
             })
           }}
           parentHandleInfoFn={this.handleInfo.bind(this)}

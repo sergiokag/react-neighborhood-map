@@ -50,7 +50,7 @@ export default class PinMarker extends React.Component {
   }
 
   render() {
-    return (
+    return (  
 
                 <Marker
                     animation = { window.google.maps.Animation.DROP }
@@ -58,10 +58,52 @@ export default class PinMarker extends React.Component {
                     onClick={() => this.handleToggleOpen()}>
 
                     {   
-                        
-                        ( this.state.isOpen  )
-                          // TODO: bug with infowindows
-                          //&& ( this.props.locationId === this.props.id )
+
+                        (this.props.locationId === null) 
+                          ? 
+                        (
+
+                            ( this.state.isOpen  )
+
+                            && 
+
+                          <InfoWindow 
+                            onCloseClick={ () => this.handleToggleClose() }>
+                            <div style={{ backgroundColor: `#ffffff`, padding: `12px` }}>
+                              <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
+                                <h2>{ this.props.position.title }</h2>
+
+
+                                {
+                                  ( this.state.tips.length ) 
+                                      ?
+                                    <div>
+                                      <h3>Comments:</h3>  
+                                      <ul>
+                                        { 
+                                            this.state.tips.map( (t, i) => <li key={i}>
+                                                                              { t.text ? t.text : 'No tips availiable' }
+                                                                          </li> 
+                                                            )
+                                        }
+                                      </ul>
+                                    </div>
+                                      : 
+                                    <p>
+                                      No data availiable!
+                                    </p>
+                                }     
+
+
+
+                              </div>
+                            </div>         
+                          </InfoWindow>                          
+
+                        ) 
+                          : 
+                        (
+                          ( this.state.isOpen  ) && ( this.props.locationId === this.props.id )
 
                           && 
 
@@ -96,7 +138,10 @@ export default class PinMarker extends React.Component {
 
                             </div>
                           </div>         
-                        </InfoWindow>
+                        </InfoWindow>                            
+                        ) 
+                        
+
                     }
                       
                 </Marker>
