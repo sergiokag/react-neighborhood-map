@@ -38,9 +38,13 @@ export default class SideMenu extends React.Component {
 
   changeMenuStatus () {
     this.props.parentHandleMenuFn(!this.props.menuStatus);
-    document.querySelector('#open-menu-btn').focus();
-  }
+    
+    if(!this.props.menuStatus === false) {
+      document.querySelector('#open-menu-btn').focus();
+    }
 
+  }
+  
   searchLocation (e) {
     e.persist();
     

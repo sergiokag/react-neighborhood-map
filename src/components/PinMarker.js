@@ -59,7 +59,9 @@ export default class PinMarker extends React.Component {
 
                     {   
                         
-                        ( this.state.isOpen && ( this.props.locationId === this.props.id ) )
+                        ( this.state.isOpen  )
+                          // TODO: bug with infowindows
+                          //&& ( this.props.locationId === this.props.id )
 
                           && 
 
