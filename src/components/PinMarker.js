@@ -79,7 +79,7 @@ export default class PinMarker extends React.Component {
                                       ?
                                     <div>
                                       <h3>Comments:</h3>  
-                                      <ul>
+                                      <ul  style={{ listStyleType: `decimal`, paddingLeft: `15px` }}>
                                         { 
                                             this.state.tips.map( (t, i) => <li key={i}>
                                                                               { t.text ? t.text : 'No tips availiable' }
@@ -119,7 +119,7 @@ export default class PinMarker extends React.Component {
                                     ?
                                   <div>
                                     <h3>Comments:</h3>  
-                                    <ul>
+                                    <ul style={{ listStyleType: `decimal`, paddingLeft: `15px` }}>
                                       { 
                                           this.state.tips.map( (t, i) => <li key={i}>
                                                                             { t.text ? t.text : 'No tips availiable' }
