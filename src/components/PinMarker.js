@@ -53,7 +53,13 @@ export default class PinMarker extends React.Component {
     return (  
 
                 <Marker
-                    animation = { window.google.maps.Animation.DROP }
+                    animation = { 
+                      (this.props.locationId === this.props.position['v_id'])
+                        ?
+                      window.google.maps.Animation.BOUNCE
+                        :
+                      null
+                     }
                     position={this.props.position}
                     onClick={() => this.handleToggleOpen()}>
 
