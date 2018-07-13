@@ -10,6 +10,7 @@ import {
 // components
 import PinMarker from './PinMarker'
 
+// data
 import { defaultLocations } from '../data/locations-list'
 
 class Map  extends React.Component {
@@ -38,6 +39,7 @@ class Map  extends React.Component {
   render() {
     let _defaultLocations;
     
+    // Checking for new markers. If not then we get the default locations
     ( this.props.newMarkers  && this.props.newMarkers.length )
       ?
     _defaultLocations = this.props.newMarkers

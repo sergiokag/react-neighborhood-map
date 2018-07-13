@@ -8,44 +8,14 @@ export default class Header extends React.Component {
 
     // add focus to nav when it appears
     setTimeout(()=>{
-      this.trapKeyOnNav();
+      this.focusNav();
     },500);
 
   }
-
-  trapKeyFn(e, elems) {
-    
-    const _firstTabStop = elems[0];
-    const _lastTabStop = elems[elems.length - 1];
-
-    if ( 
-          e.shiftKey &&
-          e.keyCode === 9 &&
-          document.activeElement === _firstTabStop
-      ) {
-
-          e.preventDefault();
-          _lastTabStop.focus();
-
-    }
-    else {
-
-        if (
-          e.keyCode === 9 &&
-          document.activeElement === _lastTabStop
-        ) { 
-            e.preventDefault();
-            _firstTabStop.focus();
-         }
-    } 
-
-    
-  }
   
-  trapKeyOnNav() {
+  focusNav() {
     const _nav = document.querySelector('#main-menu');
     _nav.focus();
-
   }
 
   render() {

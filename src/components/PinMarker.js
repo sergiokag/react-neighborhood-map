@@ -65,6 +65,15 @@ export default class PinMarker extends React.Component {
                     position={this.props.position}
                     onClick={() => this.handleToggleOpen()}>
 
+
+                    {/*  
+                         I have duplicate the infowindow in order to 
+                         show infowindow for the defaults and the markers 
+                         from the api.
+
+                         This is not the best solution but I get the results I want. Need to refactor it.
+                    */}
+
                     {   
 
                         (this.props.locationId === null) 

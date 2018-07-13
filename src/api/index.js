@@ -1,3 +1,8 @@
+/**
+ * @description: This file is for fetching data from the Foursquare api
+ */
+
+
 const ID = '1V340QFFYS0YJDOF01YIVZUYB5B1PB0RRL2G4FMS2ZMBNQFD';
 const S_KEY = 'JVUFVZJ35JTNRIGL303QL4G0JSNXA00PWWRR4F5ZSPE2R4PO';
 
