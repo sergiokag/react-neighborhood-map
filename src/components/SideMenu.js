@@ -16,6 +16,15 @@ export default class SideMenu extends React.Component {
 
   }
 
+  focusInfoWindow() {
+    // setTimeout(() => {
+    //   //window.document.querySelector('#infoWindow').focus();
+     console.dir(window.document.querySelector('#infoWindow'))
+    // }, 1200);
+  }
+
+  // taking the response 
+  // make it look like the defaultLocations structure
   beautifyResponse (arr) {
     const finalArr = [];
     
@@ -124,8 +133,14 @@ export default class SideMenu extends React.Component {
 
                         return  <li 
                                   tabIndex='0'
-                                  onKeyPress={ () => { this.props.parentHandleInfoFn(l['v_id']) } }
-                                  onClick={ () => { this.props.parentHandleInfoFn(l['v_id']) } }
+                                  onKeyPress={ () => { 
+                                    this.props.parentHandleInfoFn(l['v_id']);
+                                    // when press enter the focus goes to the infoWindow
+                                    this.focusInfoWindow(); 
+                                  } }
+                                  onClick={ () => { 
+                                    this.props.parentHandleInfoFn(l['v_id']);
+                                  } }
                                   key={i}>
 
                                   <p>
@@ -150,4 +165,5 @@ export default class SideMenu extends React.Component {
       </nav>
     )
   }
+
 }

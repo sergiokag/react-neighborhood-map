@@ -4,6 +4,11 @@ This is a react application for finding places to visit in my neighborhood, Athe
 You can search for places to eat, drink and more.
 Using the Foursquare platform you can read comments from other people who have visited those places.
 
+## Attention
+
+If you don't get any data from the Foursquare api, and you the errortype 429,
+then the daily call quota exceeded. Try next day. Sorry :(
+
 ## TL;DR
 
 To get started:

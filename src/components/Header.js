@@ -2,7 +2,7 @@
 import React from 'react'
 
 export default class Header extends React.Component {
-
+  
   changeMenuStatus() {
     this.props.parentHandleMenuFn(!this.props.parentMenuStatus);
 
@@ -19,6 +19,7 @@ export default class Header extends React.Component {
   }
 
   render() {
+
     return (
       <header
         className="header-region">

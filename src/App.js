@@ -19,7 +19,16 @@ export default class App extends React.Component {
       locationId: null
     }
   }
-
+  
+  componentDidMount() {
+    this.focusMenuBtn()
+  }
+  
+  focusMenuBtn() {
+    const _btn = document.querySelector('#open-menu-btn');
+    _btn.focus();  
+  }
+  
   handleMenuStatus(bool) {
     this.setState({
       menuStatus: bool
@@ -38,6 +47,7 @@ export default class App extends React.Component {
       locationId: id
     })
   }
+
 
   render() {
     return( 

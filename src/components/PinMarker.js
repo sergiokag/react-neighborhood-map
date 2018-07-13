@@ -45,11 +45,19 @@ export default class PinMarker extends React.Component {
     });
   }
 
-    handleToggleClose()  {
+  handleToggleClose()  {
       this.setState({
         isOpen: !!this.state.isOpen
     })
   }
+
+  handleClose()  {
+  this.setState({
+      isOpen: false
+  });
+
+  window.document.querySelector('.results-list').focus()
+}
 
   render() {
     return (  
@@ -86,7 +94,9 @@ export default class PinMarker extends React.Component {
 
                           <InfoWindow 
                             onCloseClick={ () => this.handleToggleClose() }>
-                            <div style={{ backgroundColor: `#ffffff`, padding: `12px` }}>
+                            <div 
+                                id="infoWindow" tabIndex='-1' style={{ backgroundColor: `#ffffff`, padding: `12px` }}
+                                onKeyPress={ () => this.handleClose() }>
                               <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
                                 <h2>{ this.props.position.title }</h2>
 
@@ -126,7 +136,10 @@ export default class PinMarker extends React.Component {
 
                         <InfoWindow 
                           onCloseClick={ () => this.handleToggleClose() }>
-                          <div style={{ backgroundColor: `#ffffff`, padding: `12px` }}>
+                          <div 
+                            id="infoWindow" tabIndex='-1' style={{ backgroundColor: `#ffffff`, padding: `12px` }}
+                            onKeyPress={ () => this.handleClose() }>
+
                             <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
                               <h2>{ this.props.position.title }</h2>
 
