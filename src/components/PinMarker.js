@@ -22,12 +22,14 @@ export default class PinMarker extends React.Component {
   componentDidMount(){
 
       getFourSquareInfo(this.props.position).then( r => {
-      
-        this.setState({
-          tips: r.data.response.venue.tips.groups[0].items
-        })
-
+        return r.json()    
       })
+      .then( data => {
+        this.setState({
+          tips: data.response.venue.tips.groups[0].items
+        })
+      })
+      .catch(err => console.error(err))
 
   }
 

@@ -1,12 +1,3 @@
-export const locations = [
-                          { 
-                            "v_id" : "4cb499cceb65b1f71b668bcd",
-                            "title" : "Test",
-                            "lat": 38.0118535,
-                            "lng": 23.8226797,
-                          }
-                        ];
-
 export const defaultLocations =   [
   { 
     v_id : "4fda2cade4b0c5e9ba04168f",

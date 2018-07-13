@@ -1,7 +1,3 @@
-// libs
-//import { locations } from '../data/locations-list'
-import axios from 'axios'
-
 const ID = '1V340QFFYS0YJDOF01YIVZUYB5B1PB0RRL2G4FMS2ZMBNQFD';
 const S_KEY = 'JVUFVZJ35JTNRIGL303QL4G0JSNXA00PWWRR4F5ZSPE2R4PO';
 
@@ -18,9 +14,7 @@ function getRawResults(inputValue) {
     limit: 10
   };
 
-  return axios.get(`https://api.foursquare.com/v2/venues/search/`, {
-    params
-  });
+  return fetch(`https://api.foursquare.com/v2/venues/search/?client_id=${params.client_id}&client_secret=${params.client_secret}&v=${params.v}&near=${params.near}&query=${params.query}&radius=${params.radius}&limit=${params.limit}`);
 }
 
 export function getLocation(value) {
@@ -41,8 +35,6 @@ export function getFourSquareInfo(obj) {
       v: '20180323',
       limit: 1
     };
-
-    return axios.get(`https://api.foursquare.com/v2/venues/${v_id}`, {
-      params
-    }) 
+    
+    return fetch(`https://api.foursquare.com/v2/venues/${v_id}/?client_id=${params.client_id}&client_secret=${params.client_secret}&v=${params.v}&ll=${params.ll},&limit=${params.limit}`);
 }

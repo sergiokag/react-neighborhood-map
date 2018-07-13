@@ -65,19 +65,26 @@ export default class SideMenu extends React.Component {
     // get the locations
     let results = [];
     let resultsFromPromise = getLocation(_value)
-                              .then( res =>{ 
+                              .then( r =>{
+                                return r.json()       
+                              })
+                              .then( data => {
 
-                                results = res.data.response.venues;
-
+                                console.log(data)
+                                
+                                results = data.response.venues;
+  
                                 // need transform data
                                 results = this.beautifyResponse(results);
-
+  
                                 this.setState({
                                   locationList: results
                                 });
                                 this.props.parentHandleResultsFn(results);                                
+                                
 
-                              }).catch(err => console.error(err));
+                              })
+                              .catch(err => console.error(err));
 
 
   }
