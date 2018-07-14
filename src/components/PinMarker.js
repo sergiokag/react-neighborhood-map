@@ -1,10 +1,10 @@
 // core
 import React from 'react'
 
-// libs 
+// libs
 import {
   Marker,
-  InfoWindow 
+  InfoWindow
 } from "react-google-maps"
 
 import { getFourSquareInfo } from '../api/index'
@@ -15,6 +15,7 @@ export default class PinMarker extends React.Component {
     super(props)
     this.state = {
       isOpen: false,
+      errors: null,
       tips: []
     }
   }
@@ -22,14 +23,18 @@ export default class PinMarker extends React.Component {
   componentDidMount(){
 
       getFourSquareInfo(this.props.position).then( r => {
-        return r.json()    
+        return r.json()
       })
       .then( data => {
         this.setState({
           tips: data.response.venue.tips.groups[0].items
         })
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        this.setState({
+          errors: err
+        })
+      })
 
   }
 
@@ -60,10 +65,10 @@ export default class PinMarker extends React.Component {
 }
 
   render() {
-    return (  
+    return (
 
                 <Marker
-                    animation = { 
+                    animation = {
                       (this.props.locationId === this.props.position['v_id'])
                         ?
                       window.google.maps.Animation.BOUNCE
@@ -74,27 +79,27 @@ export default class PinMarker extends React.Component {
                     onClick={() => this.handleToggleOpen()}>
 
 
-                    {/*  
-                         I have duplicate the infowindow in order to 
-                         show infowindow for the defaults and the markers 
+                    {/*
+                         I have duplicate the infowindow in order to
+                         show infowindow for the defaults and the markers
                          from the api.
 
                          This is not the best solution but I get the results I want. Need to refactor it.
                     */}
 
-                    {   
+                    {
 
-                        (this.props.locationId === null) 
-                          ? 
+                        (this.props.locationId === null)
+                          ?
                         (
 
                             ( this.state.isOpen  )
 
-                            && 
+                            &&
 
-                          <InfoWindow 
+                          <InfoWindow
                             onCloseClick={ () => this.handleToggleClose() }>
-                            <div 
+                            <div
                                 id="infoWindow" tabIndex='-1' style={{ backgroundColor: `#ffffff`, padding: `12px` }}
                                 onKeyPress={ () => this.handleClose() }>
                               <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
@@ -102,41 +107,49 @@ export default class PinMarker extends React.Component {
 
 
                                 {
-                                  ( this.state.tips.length ) 
+                                  ( !this.state.errors )
                                       ?
                                     <div>
-                                      <h3>Comments:</h3>  
-                                      <ul  style={{ listStyleType: `decimal`, paddingLeft: `15px` }}>
-                                        { 
-                                            this.state.tips.map( (t, i) => <li key={i}>
-                                                                              { t.text ? t.text : 'No tips availiable' }
-                                                                          </li> 
-                                                            )
-                                        }
-                                      </ul>
+                                      <h3>Comments:</h3>
+                                      {
+                                        ( this.state.tips.length )
+                                          ?
+                                          <ul  style={{ listStyleType: `decimal`, paddingLeft: `15px` }}>
+                                          {
+                                              this.state.tips.map( (t, i) => <li key={i}>
+                                                                                { t.text ? t.text : 'No tips availiable' }
+                                                                            </li>
+                                                                )
+                                          }
+                                        </ul>
+                                          :
+                                          <ul  style={{ listStyleType: `decimal`, paddingLeft: `15px` }}>
+                                          <li>No comments have been added yet</li>
+                                        </ul>
+                                      }
                                     </div>
-                                      : 
+                                      :
                                     <p>
-                                      No data availiable!
+                                      Daily call quota exceeded. You have sent too many requests in a given amount of time.
                                     </p>
-                                }     
+                                }
 
 
 
                               </div>
-                            </div>         
-                          </InfoWindow>                          
+                            </div>
+                          </InfoWindow>
 
-                        ) 
-                          : 
+                        )
+                          :
                         (
                           ( this.state.isOpen  ) && ( this.props.locationId === this.props.id )
 
-                          && 
+                          &&
 
-                        <InfoWindow 
+                        <InfoWindow
                           onCloseClick={ () => this.handleToggleClose() }>
-                          <div 
+                          <div
                             id="infoWindow" tabIndex='-1' style={{ backgroundColor: `#ffffff`, padding: `12px` }}
                             onKeyPress={ () => this.handleClose() }>
 
@@ -144,36 +157,43 @@ export default class PinMarker extends React.Component {
                               <h2>{ this.props.position.title }</h2>
 
 
-                              {
-                                ( this.state.tips.length ) 
-                                    ?
-                                  <div>
-                                    <h3>Comments:</h3>  
-                                    <ul style={{ listStyleType: `decimal`, paddingLeft: `15px` }}>
-                                      { 
-                                          this.state.tips.map( (t, i) => <li key={i}>
-                                                                            { t.text ? t.text : 'No tips availiable' }
-                                                                        </li> 
-                                                          )
+                                {
+                                  ( !this.state.errors )
+                                      ?
+                                    <div>
+                                      <h3>Comments:</h3>
+                                      {
+                                        ( this.state.tips.length )
+                                          ?
+                                          <ul  style={{ listStyleType: `decimal`, paddingLeft: `15px` }}>
+                                          {
+                                              this.state.tips.map( (t, i) => <li key={i}>
+                                                                                { t.text ? t.text : 'No tips availiable' }
+                                                                            </li>
+                                                                )
+                                          }
+                                        </ul>
+                                          :
+                                          <ul  style={{ listStyleType: `decimal`, paddingLeft: `15px` }}>
+                                          <li>No comments have been added yet</li>
+                                        </ul>
                                       }
-                                    </ul>
-                                  </div>
-                                    : 
-                                  <p>
-                                    No data availiable!
-                                  </p>
-                              }     
+                                    </div>
+                                      :
+                                    <p>
+                                      Daily call quota exceeded. You have sent too many requests in a given amount of time.
+                                    </p>
+                                }
 
 
 
                             </div>
-                          </div>         
-                        </InfoWindow>                            
-                        ) 
-                        
+                          </div>
+                        </InfoWindow>
+                        )
 
                     }
-                      
+
                 </Marker>
 
     )
