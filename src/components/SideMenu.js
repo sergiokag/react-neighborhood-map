@@ -118,7 +118,10 @@ export default class SideMenu extends React.Component {
 
         <div className='search-container'>
 
-          <input type='text'
+          <input 
+            title='Find the best places to eat, drink, shop, or visit in Athens, Greece'
+            placeholder='Type in what are you looking for'
+            type='text'
             onChange={ _.debounce( this.searchLocation.bind(this) , 1000) }
             ref={(input) => { this.textVal = input }} />
 
