@@ -48,6 +48,12 @@ export default class App extends React.Component {
     })
   }
 
+  handleSearchTerm(term){
+    this.setState({
+      query: term
+    })
+  }
+
 
   render() {
     return( 
@@ -59,7 +65,8 @@ export default class App extends React.Component {
             parentMenuStatus={this.state.menuStatus}
             parentHandleMenuFn={this.handleMenuStatus.bind(this)}/>
 
-          <Main 
+          <Main
+            query={this.state.query}
             locationId={this.state.locationId}
             parentSelected={this.state.openInfo}
             parentResults={this.state.results} />
@@ -73,6 +80,7 @@ export default class App extends React.Component {
               locationId: null
             })
           }}
+          parentHandleSearchTerm={this.handleSearchTerm.bind(this)}
           parentHandleInfoFn={this.handleInfo.bind(this)}
           parentHandleResultsFn={this.handleResults.bind(this)}
           menuStatus={this.state.menuStatus}

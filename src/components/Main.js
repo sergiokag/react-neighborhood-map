@@ -12,6 +12,7 @@ export default class Main extends React.Component {
         className="main-region">
 
         <Map
+          query={this.props.query}
           locationId={this.props.locationId}
           selectedMarker={this.props.parentSelected}
           newMarkers={this.props.parentResults}

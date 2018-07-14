@@ -96,8 +96,9 @@ export default class SideMenu extends React.Component {
                                 this.setState({
                                   locationList: results
                                 });
-                                this.props.parentHandleResultsFn(results);
 
+                                this.props.parentHandleResultsFn(results);
+                                this.props.parentHandleSearchTerm(_value);
 
                               })
                               .catch(err => console.log(err));

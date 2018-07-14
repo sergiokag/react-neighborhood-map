@@ -40,11 +40,18 @@ class Map  extends React.Component {
     let _defaultLocations;
     
     // Checking for new markers. If not then we get the default locations
-    ( this.props.newMarkers  && this.props.newMarkers.length )
+    ( this.props.newMarkers  && this.props.query  && this.props.newMarkers.length > 0 )
       ?
     _defaultLocations = this.props.newMarkers
       :
-    _defaultLocations = this.state._defaultLocations;
+
+    (
+      ( this.props.newMarkers && this.props.query && this.props.newMarkers.length === 0 )
+        ?
+       _defaultLocations = []
+       :
+      _defaultLocations = this.state._defaultLocations
+    )
 
     return (
       <div className="map-container">
