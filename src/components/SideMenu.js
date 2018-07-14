@@ -5,13 +5,16 @@ import React from 'react'
 import _ from 'lodash'
 import { getLocation } from '../api'
 
+// data
+import { defaultLocations } from '../data/locations-list'
+
 export default class SideMenu extends React.Component {
   
   constructor(props){
     super(props);
 
     this.state = {
-      locationList : []
+      locationList : defaultLocations
     };
 
   }
@@ -59,13 +62,17 @@ export default class SideMenu extends React.Component {
     
     let _value = this.textVal.value;
 
+
+    // if there is no values
+    // must show a list of the 
+    // default locations
     if(!_value) {
 
       this.setState({
-        locationList: []
+        locationList: defaultLocations
       });
 
-      this.props.parentHandleResultsFn([]);
+      this.props.parentHandleResultsFn(defaultLocations);
       this.props.parentClearInfo();
 
       return;
