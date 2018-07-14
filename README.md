@@ -47,3 +47,12 @@ To get started:
 ## Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
+## Using Service Workers
+
+We are using the React default service worker, that works only in production mode.
+
+In order to take benefit of the service worker you need to:
+
+    1.Build the application, using npm run build
+    2.Run a simple http server from your **build directory**.
