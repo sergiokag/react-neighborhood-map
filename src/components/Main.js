@@ -9,8 +9,7 @@ export default class Main extends React.Component {
   render() {
     return (
       <main 
-        className="main-region"
-        role='main'>
+        className="main-region">
 
         <Map
           locationId={this.props.locationId}
