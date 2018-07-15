@@ -54,5 +54,5 @@ We are using the React default service worker, that works only in production mod
 
 In order to take benefit of the service worker you need to:
 
-    1.Build the application, using ``npm run build``
-    2.Run a simple http server from your **build directory**, using ``serve -s build``
+    1.Build the application, using npm run build
+    2.Run a simple http server from your build directory, using serve -s build
