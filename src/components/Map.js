@@ -20,6 +20,7 @@ class Map  extends React.Component {
 
     this.state = {
       _defaultLocations: defaultLocations ,
+      openInfoWindows: false
     };
   }
 
@@ -34,6 +35,12 @@ class Map  extends React.Component {
     });
 
     return this._bounds.getCenter();
+  }
+
+  clearAll() {
+    this.setState({
+      openInfoWindows: false
+    })
   }
   
   render() {
@@ -61,9 +68,11 @@ class Map  extends React.Component {
           
           {
             _defaultLocations.map( (p,i) => <PinMarker
+                                              isOpen={this.state.openInfoWindows}
+                                              clearAll={this.clearAll.bind(this)}
                                               locationId={this.props.locationId}
                                               id={p['v_id']}
-                                              selectedMarker={this.props.selectedMarker}
+                                              selectedMarkerFromList={ this.props.locationId === p['v_id'] }
                                               key={i}
                                               position={p} /> 
                                   )

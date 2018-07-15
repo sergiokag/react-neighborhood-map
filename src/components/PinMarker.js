@@ -14,8 +14,9 @@ export default class PinMarker extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isOpen: false,
+      isOpen: this.props.isOpen,
       errors: null,
+      counter: 0,
       tips: []
     }
   }
@@ -45,15 +46,29 @@ export default class PinMarker extends React.Component {
   }
 
   handleToggleOpen() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
+    // first close all the other pins
+    
+    this.props.clearAll();
+    ++this.state.counter;
 
-  handleToggleClose()  {
+    console.log(this.state.counter)
+
+    if (this.state.counter % 2 !== 0) {
+      //then open the Infowindow
+      console.log('opened');
       this.setState({
-        isOpen: !!this.state.isOpen
-    })
+        isOpen: true
+      });
+    }
+    else {
+      console.log('closed');
+      this.setState({
+        isOpen: false
+      });
+    }
+    
+
+
   }
 
   handleClose()  {
@@ -69,7 +84,9 @@ export default class PinMarker extends React.Component {
 
                 <Marker
                     animation = {
-                      (this.props.locationId === this.props.position['v_id'])
+                      (
+                        ( this.props.selectedMarkerFromList && this.state.isOpen ) || this.state.isOpen
+                      )
                         ?
                       window.google.maps.Animation.BOUNCE
                         :
@@ -98,7 +115,7 @@ export default class PinMarker extends React.Component {
                             &&
 
                           <InfoWindow
-                            onCloseClick={ () => this.handleToggleClose() }>
+                            onCloseClick={ () => this.handleClose() }>
                             <div
                                 id="infoWindow" tabIndex='-1' style={{ backgroundColor: `#ffffff`, padding: `12px` }}
                                 onKeyPress={ () => this.handleClose() }>
@@ -143,12 +160,12 @@ export default class PinMarker extends React.Component {
                         )
                           :
                         (
-                          ( this.state.isOpen  ) && ( this.props.locationId === this.props.id )
+                          ( this.state.isOpen  && this.props.selectedMarker )
 
                           &&
 
                         <InfoWindow
-                          onCloseClick={ () => this.handleToggleClose() }>
+                          onCloseClick={ () => this.handleClose() }>
                           <div
                             id="infoWindow" tabIndex='-1' style={{ backgroundColor: `#ffffff`, padding: `12px` }}
                             onKeyPress={ () => this.handleClose() }>
