@@ -38,7 +38,10 @@
       To create a production bundle, use `npm run build`.
     -->
     <script
-      async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkV06KWTh709fFp4UpMCGPNNwYrrVbPNU"></script>    
+      async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkV06KWTh709fFp4UpMCGPNNwYrrVbPNU"
+      onload="console.log(`Google Map created!`)"
+      onerror="alert( `There was an error occured with the Google Maps. Please check internet connection or your api key. Otherwise, please try again later.`);">
+    </script>
   </body>
 </html>
