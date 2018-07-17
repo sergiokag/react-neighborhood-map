@@ -53,14 +53,14 @@ export default class PinMarker extends React.Component {
       return;
     }
     
-    this.props.parentClickedFn('');
+    this.props.parentClickedFn(null);
     this.setState({
       isOpen: false
     });
   }
 
   handleClose()  {
-    this.props.parentClickedFn('');
+    this.props.parentClickedFn(null);
     this.setState({
         isOpen: false
     });

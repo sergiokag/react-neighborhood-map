@@ -15,30 +15,14 @@ export default class SideMenuItem extends React.Component {
             <li 
                 tabIndex='0'
                 
-                onKeyPress={ () => { 
-                    this.setState({counter: this.state.counter + 1}, ()=> {
-                        if(this.state.counter % 2 !== 0) {
-                            this.props.parentHandleInfoFn(this.props.location['v_id']);
-                            // when press enter the focus goes to the infoWindow
-                            this.props.parentFocusInfoWindow(); 
-
-                        }else{
-                            this.props.parentHandleInfoFn(null);
-                        }
-                    });
-
-
+                onKeyPress={ () => {                     
+                    this.props.parentHandleInfoFn(this.props.location['v_id']);
+                    // when press enter the focus goes to the infoWindow
+                    this.props.parentFocusInfoWindow();
                 } }
 
                 onClick={ () => { 
-                    this.setState({counter: this.state.counter + 1}, ()=> {
-                    if(this.state.counter % 2 !== 0) {
-                        this.props.parentHandleInfoFn(this.props.location['v_id']);
-
-                    }else{
-                        this.props.parentHandleInfoFn(null);
-                    }
-                   });
+                    this.props.parentHandleInfoFn(this.props.location['v_id']);
                 } }>
 
                     <p>

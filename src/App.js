@@ -30,7 +30,8 @@ export default class App extends React.Component {
   
   handleMenuStatus(bool) {
     this.setState({
-      menuStatus: bool
+      menuStatus: bool,
+      locationId: null
     })
   }
 

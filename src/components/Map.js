@@ -78,8 +78,6 @@ class Map  extends React.Component {
                                               isOpen={ 
                                                 this.state.clickedPin === p['v_id'] 
                                                   ||
-                                                this.props.locationId === p['v_id'] 
-                                                  ||
                                                 false
                                               }
                                               id={p['v_id']}
