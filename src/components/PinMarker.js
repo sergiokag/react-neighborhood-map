@@ -40,22 +40,27 @@ export default class PinMarker extends React.Component {
 
   componentWillReceiveProps(props) {
     this.setState({
-      isOpen: props.selectedMarker
+      isOpen: props.selectedMarkerFromList
     })
   }
 
   handleToggleOpen() {
-
     if(!this.state.isOpen){
       this.props.parentClickedFn(this.props.position['v_id']);
+      this.setState({
+        isOpen: true
+      });
+      return;
     }
     
+    this.props.parentClickedFn('');
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: false
     });
   }
 
   handleClose()  {
+    //this.props.parentClickedFn('');
     this.setState({
         isOpen: false
     });
@@ -75,7 +80,6 @@ export default class PinMarker extends React.Component {
                     }
                     position={this.props.position}
                     onClick={() => this.handleToggleOpen()}>
-
 
                     {
 

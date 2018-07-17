@@ -21,8 +21,17 @@ class Map  extends React.Component {
     this.state = {
       _defaultLocations: defaultLocations ,
       clickedPin: '',
-      openInfoWindows: false
     };
+  }
+
+  componentWillReceiveProps(props) {    
+    if(props.locationId) {
+      this.setState({
+        clickedPin: props.locationId
+      }, ()=> {
+        console.log(this.state)
+      })
+    }
   }
 
   // getCenter functionality

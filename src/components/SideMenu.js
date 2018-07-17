@@ -1,6 +1,9 @@
 // core
 import React from 'react'
 
+// component
+import SideMenuItem from './SideMenuItem'
+
 // libs
 import _ from 'lodash'
 import { getLocation } from '../api'
@@ -20,10 +23,10 @@ export default class SideMenu extends React.Component {
   }
 
   focusInfoWindow() {
-    // setTimeout(() => {
-    //   //window.document.querySelector('#infoWindow').focus();
-     console.dir(window.document.querySelector('#infoWindow'))
-    // }, 1200);
+    setTimeout(() => {
+      window.document.querySelector('#infoWindow').focus();
+      console.dir(window.document.querySelector('#infoWindow'))
+    }, 800);
   }
 
   // taking the response 
@@ -140,25 +143,15 @@ export default class SideMenu extends React.Component {
                     <ul 
                       aria-label="places"
                       className='results-list'>
+
                       { locationList.map((l, i) => {
 
-                        return  <li 
-                                  tabIndex='0'
-                                  onKeyPress={ () => { 
-                                    this.props.parentHandleInfoFn(l['v_id']);
-                                    // when press enter the focus goes to the infoWindow
-                                    this.focusInfoWindow(); 
-                                  } }
-                                  onClick={ () => { 
-                                    this.props.parentHandleInfoFn(l['v_id']);
-                                  } }
-                                  key={i}>
-
-                                  <p>
-                                    { l.title }
-                                  </p>
-
-                                </li>
+                        return  <SideMenuItem
+                                  location={l}
+                                  key={i}
+                                  parentHandleInfoFn={this.props.parentHandleInfoFn}
+                                  parentFocusInfoWindow={this.focusInfoWindow.bind(this)}
+                                />
 
                       })}
                     </ul>
