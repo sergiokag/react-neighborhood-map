@@ -25,13 +25,9 @@ class Map  extends React.Component {
   }
 
   componentWillReceiveProps(props) {    
-    if(props.locationId) {
-      this.setState({
-        clickedPin: props.locationId
-      }, ()=> {
-        console.log(this.state)
-      })
-    }
+    this.setState({
+      clickedPin: props.locationId
+    })
   }
 
   // getCenter functionality
@@ -79,9 +75,14 @@ class Map  extends React.Component {
           {
             _defaultLocations.map( (p,i) => <PinMarker
                                               parentClickedFn={this.clickedPin.bind(this)}
-                                              isOpen={this.props.clickedPin === p['v_id']}
+                                              isOpen={ 
+                                                this.state.clickedPin === p['v_id'] 
+                                                  ||
+                                                this.props.locationId === p['v_id'] 
+                                                  ||
+                                                false
+                                              }
                                               id={p['v_id']}
-                                              selectedMarkerFromList={ this.props.locationId === p['v_id'] }
                                               key={i}
                                               position={p} /> 
                                   )

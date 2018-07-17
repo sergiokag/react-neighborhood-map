@@ -14,7 +14,6 @@ export default class Main extends React.Component {
         <Map
           query={this.props.query}
           locationId={this.props.locationId}
-          selectedMarker={this.props.parentSelected}
           newMarkers={this.props.parentResults}
           containerElement={<div role='application' style={{ height: `100%` }} />}
           mapElement={<div style={{ height: `100%` }} />}

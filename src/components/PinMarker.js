@@ -40,7 +40,7 @@ export default class PinMarker extends React.Component {
 
   componentWillReceiveProps(props) {
     this.setState({
-      isOpen: props.selectedMarkerFromList
+      isOpen: props.isOpen
     })
   }
 
@@ -60,7 +60,7 @@ export default class PinMarker extends React.Component {
   }
 
   handleClose()  {
-    //this.props.parentClickedFn('');
+    this.props.parentClickedFn('');
     this.setState({
         isOpen: false
     });
