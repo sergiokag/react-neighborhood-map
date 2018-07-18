@@ -26,10 +26,18 @@ class Map  extends React.Component {
     };
   }
 
+  componentDidMount(){
+    window.gm_authFailure = this.gm_authFailure;
+  }
+
   componentWillReceiveProps(props) {    
     this.setState({
       clickedPin: props.locationId
     })
+  }
+
+  gm_authFailure() {
+    alert( `There was an error occured with the Google Maps. Please check internet connection or your api key. Otherwise, please try again later.`);
   }
 
   // getCenter functionality
