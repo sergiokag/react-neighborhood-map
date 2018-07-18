@@ -35,7 +35,8 @@ To get started:
     │   │   ├── Main.js # This is the component contains that contains the main content of the page like the map etc.
     │   │   ├── Map.js # This is the component that contains the Google map
     │   │   ├── PinMarker.js # This is the component that refers to the markers of the map
-    │   │   └── SideMenu.js # This is the component that contains the input search field and the list of the results coming from the Foursquare
+    │   │   ├── SideMenu.js # This is the component that contains the input search field and the list of the results coming from the Foursquare
+    │   │   └── SideMenuItem.js # This is the component that contains a location
     ├── data # A folder for the static data
     │   └── location-list.js # Here are the five default locations
     ├── index.css # Global styles. You probably won't need to change anything here.
