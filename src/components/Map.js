@@ -1,6 +1,7 @@
 // core
 import React from 'react'
 
+// check https://tomchentw.github.io/react-google-maps/ for withScriptjs
 // libs 
 import {
   withGoogleMap,
