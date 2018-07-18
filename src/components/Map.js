@@ -4,6 +4,7 @@ import React from 'react'
 // check https://tomchentw.github.io/react-google-maps/ for withScriptjs
 // libs 
 import {
+  withScriptjs,
   withGoogleMap,
   GoogleMap
 } from "react-google-maps"
@@ -96,4 +97,4 @@ class Map  extends React.Component {
 
 }
 
-export default withGoogleMap(Map);
+export default withScriptjs(withGoogleMap(Map));

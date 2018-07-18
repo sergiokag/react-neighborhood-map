@@ -12,6 +12,8 @@ export default class Main extends React.Component {
         className="main-region">
 
         <Map
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkV06KWTh709fFp4UpMCGPNNwYrrVbPNU"
+          loadingElement={<div style={{ height: `100%` }} />}
           query={this.props.query}
           locationId={this.props.locationId}
           newMarkers={this.props.parentResults}
